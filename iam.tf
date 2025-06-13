@@ -27,7 +27,7 @@ data "aws_iam_policy_document" "oidc" {
 
     condition {
       test     = "StringLike"
-      values   = ["repo:YourOrg/YourRepo:*"] # Restrict to only "YourRepo"
+      values   = ["repo:${var.github_username}/${var.github_repo}:*"] # Adjust this to your GitHub username and repository
       variable = "token.actions.githubusercontent.com:sub"
     }
   }

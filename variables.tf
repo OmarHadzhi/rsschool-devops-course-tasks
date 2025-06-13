@@ -9,7 +9,10 @@ variable "policy_arns" {
   description = "List of IAM policy ARNs for GitHub Actions role"
 }
 
-# variable "tags" {
-#   type        = map(string)
-#   description = "Tag for current resources"
-# }
+variable "github_username" {
+  type = string
+}
+
+variable "github_repo" {
+  type = string
+}

@@ -60,13 +60,6 @@ jobs:
           name: tf-plan-output
           path: tf-plan-output.txt
 
-      - name: Update PR Description with Terraform Plan
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-          gh pr edit "$PR_NUMBER" --body "$(cat tf-plan-output.txt)"
-
   terraform-apply:
     runs-on: ubuntu-latest
     needs: terraform-plan

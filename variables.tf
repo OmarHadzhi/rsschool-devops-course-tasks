@@ -7,16 +7,23 @@ variable "aws_region" {
 variable "policy_arns" {
   type        = list(string)
   description = "List of IAM policy ARNs for GitHub Actions role"
+  sensitive   = true
 }
 
 variable "github_username" {
-  type = string
+  type        = string
+  sensitive   = true
+  description = "GitHub username for the repository that will use GitHub Actions"
 }
 
 variable "github_repo" {
-  type = string
+  type        = string
+  sensitive   = true
+  description = "GitHub repository name that will use GitHub Actions"
 }
 
 variable "sample_bucket" {
-  type = string
+  type        = string
+  sensitive   = true
+  description = "Name of the S3 bucket to be created for GitHub Actions artifacts"
 }

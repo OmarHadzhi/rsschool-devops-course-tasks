@@ -1,4 +1,4 @@
-# Infrastructure Setup and Usage
+# Infrastructure Setup and Usage:
 
 ## Overview
 

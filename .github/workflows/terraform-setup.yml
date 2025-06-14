@@ -52,13 +52,13 @@ jobs:
         run: terraform init
 
       - name: Generate Terraform Plan
-        run: terraform plan -out=tf.plan | tee tf-plan-output.txt
+        run: terraform plan -out=tf.plan
 
       - name: Upload Terraform Plan Output
         uses: actions/upload-artifact@v4
         with:
-          name: tf-plan-output
-          path: tf-plan-output
+          name: tf-plan
+          path: tf-plan
 
   terraform-apply:
     runs-on: ubuntu-latest
@@ -86,7 +86,7 @@ jobs:
       - name: Download Terraform Plan from Previous Job
         uses: actions/download-artifact@v4 
         with:
-          name: tf-plan-output
+          name: tf-plan
 
       - name: Apply Terraform Plan
-        run: terraform apply -auto-approve tf-plan-output
+        run: terraform apply -auto-approve tf.plan

@@ -1,4 +1,7 @@
-name: Terraform Deployment
+name: Terraform Deployment WorkFlow
+# This workflow sets up a Terraform deployment pipeline using GitHub Actions.
+# It includes steps for checking Terraform code formatting, generating a plan,
+# and applying the plan to AWS infrastructure using OIDC for authentication.
 
 on:
   pull_request:
@@ -47,8 +50,14 @@ jobs:
       - name: Initialize Terraform
         run: terraform init
 
-      - name: Terraform Plan
+      - name: Generate Terraform Plan
         run: terraform plan -out=tf.plan
+
+      - name: Upload Terraform Plan for Terraform Apply
+        uses: actions/upload-artifact@v3
+        with:
+          name: tf-plan
+          path: tf.plan
 
   terraform-apply:
     runs-on: ubuntu-latest
@@ -73,5 +82,10 @@ jobs:
       - name: Initialize Terraform
         run: terraform init
 
-      - name: Terraform Apply
+      - name: Download Terraform Plan from Previous Job
+        uses: actions/download-artifact@v3
+        with:
+          name: tf-plan
+
+      - name: Apply Terraform Plan
         run: terraform apply -auto-approve tf.plan

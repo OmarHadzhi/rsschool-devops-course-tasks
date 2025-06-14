@@ -47,8 +47,8 @@ jobs:
       - name: Initialize Terraform
         run: terraform init
 
-      - name: Generate Terraform Plan
-        run: terraform plan -out=tf.plan
+      - name: Generate Terraform Plan (Hidden Output)
+        run: terraform plan -out=tf.plan -no-color > /dev/null
 
       - name: Upload Terraform Plan for Terraform Apply
         uses: actions/upload-artifact@v4
@@ -80,5 +80,5 @@ jobs:
         with:
           name: tf-plan
 
-      - name: Apply Terraform Plan
-        run: terraform apply -auto-approve tf.plan
+      - name: Apply Terraform Plan (Hidden Output)
+        run: terraform apply -auto-approve tf.plan -no-color > /dev/null

@@ -86,7 +86,7 @@ jobs:
       - name: Download Terraform Plan from Previous Job
         uses: actions/download-artifact@v4 
         with:
-          name: tf-plan
+          name: tf-plan-output
 
       - name: Apply Terraform Plan
         run: terraform apply -auto-approve tf.plan

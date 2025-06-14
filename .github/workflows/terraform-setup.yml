@@ -89,4 +89,4 @@ jobs:
           name: tf-plan-output
 
       - name: Apply Terraform Plan
-        run: terraform apply -auto-approve tf.plan
+        run: terraform apply -auto-approve tf-plan-output

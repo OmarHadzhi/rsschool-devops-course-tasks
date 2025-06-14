@@ -1,10 +1,11 @@
 terraform {
   backend "s3" {
-    bucket         = "my-s3-tfstate-test-bucket"
-    dynamodb_table = "state-lock"
-    key            = "global/mystatefile/terraform.tfstate"
-    region         = "us-east-1"
-    encrypt        = true
+    bucket = "my-tfstate-s3-bucket-1221"
+    #dynamodb_table = "state-lock"
+    key          = "global/mystatefile/terraform.tfstate"
+    region       = "us-east-1"
+    encrypt      = true
+    use_lockfile = true # Enables native S3 state locking
 
   }
 

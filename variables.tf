@@ -16,3 +16,7 @@ variable "github_username" {
 variable "github_repo" {
   type = string
 }
+
+variable "sample_bucket" {
+  type = string
+}
